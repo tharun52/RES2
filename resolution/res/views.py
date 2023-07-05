@@ -2,6 +2,7 @@ from django.shortcuts import render
 #from django.http import HttpResponse
 from django import forms
 from django.urls import is_valid_path
+import numpy as np
 
 class DimForm(forms.Form):
     width = forms.DecimalField(min_value=0, widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder':'Width', 'autocomplete':'off'}))
@@ -19,8 +20,8 @@ def index(request):
                 "w" : w,
                 "h" : h,
                 "ratio" : ratio,
-                "w_range" : range(1281),
-                "h_range" : range(721)
+                "w_range" : np.arange(1921),
+                "h_range" : np.arange(1081)
             })
         else:
             return render(request, "res/index.html", {
